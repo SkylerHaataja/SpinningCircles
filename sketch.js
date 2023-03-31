@@ -1,20 +1,23 @@
+let scale = 0;
 function setup() {
-	createCanvas(400, 400);
+	createCanvas(window.innerWidth, window.innerHeight);
 	rectMode(CENTER);
 	fill(255, 10);
 	stroke(255, 50);
+    scale = (width > height) ? height : width; 
 }
+
 
 function draw(){
 	background(0);
-  
+    console.log(scale +" "+ height + " " + width);
 	var ang1 = TWO_PI * 0.005 * frameCount + 10;		
 	var ang2 = TWO_PI * noise(0.005*frameCount + 20);
 	var ang3 = TWO_PI * noise(0.001*frameCount + 30);
-	var rx = 60 * noise(0.01*frameCount + 40);
-	var tx = 100 * noise(0.01*frameCount + 50);
-	var size1 = 100 * noise(0.01*frameCount + 60);
-	var size2 = 50 * noise(0.01*frameCount + 60);
+	var rx = 60 * noise(0.01*frameCount + 40)*scale/400;
+	var tx = 100 * noise(0.01*frameCount + 50)*scale/400;
+	var size1 = 100 * noise(0.01*frameCount + 60)*scale/400;
+	var size2 = 50 * noise(0.01*frameCount + 60)*scale/400;
 
      
   
@@ -36,3 +39,7 @@ function draw(){
 		pop();
 	}
 }
+
+addEventListener("resize", (event) => {});
+
+onresize = (event) => {setup()};
